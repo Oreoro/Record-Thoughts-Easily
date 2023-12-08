@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ephemeral Thoughts Recorder</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Ephemeral Thoughts Recorder</h1>
+        <p>Note: Your Recorded thoughts will be deleted after 1.5 hours.</p>   
+        <form action="/" method="POST" class="mt-5">
+            <textarea name="content" rows="4" required class="form-control"></textarea>
+            <button type="submit" class="btn btn-primary mt-3">Add Thought</button>
+        </form>
+        <div class="mt-5">
+            {% for thought in thoughts %}
+            <div class="card mt-3">
+                <div class="card-body">
+                    {{ thought.content }}
+                    <p class="text-muted">{{ thought.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+                </div>   
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>  
+</html>
